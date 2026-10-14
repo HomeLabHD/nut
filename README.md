@@ -47,7 +47,7 @@ docker run -d --read-only \
   --tmpfs /run/nut:uid=65532,gid=65532,mode=0750 \
   -v ./nut:/etc/nut:ro \
   -p 3493:3493 \
-  hlhd/nut:latest
+  hlhd/nut
 ```
 
 USB: pass the device and a group that can open it, e.g.
@@ -68,7 +68,7 @@ USB: pass the device and a group that can open it, e.g.
 From the repository root:
 
 ```bash
-docker build -t nut .
+docker build -t hlhd/nut .
 ```
 
 ---
