@@ -13,6 +13,10 @@ builds:
 scribe:
   preset: https://gitlab.prplanit.com/PrPlanIT/MaintenancePolicy//preset/scribe-docker.yml
 lint:
+  modules:
+    yaml:
+      exclude:
+        - .travis.yml
   preset: https://gitlab.prplanit.com/PrPlanIT/MaintenancePolicy//preset/lint-generic.yml
 security:
   preset: https://gitlab.prplanit.com/PrPlanIT/MaintenancePolicy//preset/security.yml
