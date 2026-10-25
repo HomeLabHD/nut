@@ -9,6 +9,15 @@
 
 version: 1
 builds:
+  bin:
+    command: set -e; export DEBIAN_FRONTEND=noninteractive; apt-get update -qq; apt-get install -y -qq --no-install-recommends build-essential autoconf automake libtool pkg-config python3 libsnmp-dev libssl-dev; ./autogen.sh; ./configure --prefix=/usr --sysconfdir=/etc/nut --with-statepath=/run/nut --with-altpidpath=/run/nut --with-drivers=snmp-ups --with-snmp --without-usb --without-serial --without-neon --without-nut-scanner --without-cgi --without-dev --without-docs --without-python --without-python2 --without-python3 --disable-shared --enable-static; make -j"$(nproc)"; rm -rf host-dist; make install DESTDIR="$PWD/host-dist"; rm -rf host-dist/usr/lib host-dist/usr/local host-dist/usr/bin/nutconf
+    image: docker.io/library/debian:trixie@sha256:4c25275446ca371766b8b093c696782eabce06263fccacb8d5d813b3dc44b308
+    kind: command
+    outputs:
+      - source: host-dist
+        type: tree
+    platforms:
+      - linux/amd64
   preset: https://gitlab.prplanit.com/PrPlanIT/MaintenancePolicy//preset/build-docker.yml
 scribe:
   preset: https://gitlab.prplanit.com/PrPlanIT/MaintenancePolicy//preset/scribe-docker.yml
@@ -63,7 +72,7 @@ orgs:
       handle: hlhd
     maintainer: HomeLabHD <homelabhelp@gmail.com>
 publish:
-  preset: https://gitlab.prplanit.com/PrPlanIT/MaintenancePolicy//preset/publish-docker.yml
+  preset: https://gitlab.prplanit.com/PrPlanIT/MaintenancePolicy//preset/publish-docker-binary.yml
 registries:
   preset: https://gitlab.prplanit.com/PrPlanIT/MaintenancePolicy//preset/registries.yml
 repos:
