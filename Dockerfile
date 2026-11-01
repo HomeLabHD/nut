@@ -44,7 +44,7 @@ ARG COMMIT
 
 LABEL org.opencontainers.image.title="nut" \
       org.opencontainers.image.description="Network UPS Tools drivers, upsd and optional upsmon, rootless" \
-      org.opencontainers.image.source="https://gitlab.prplanit.com/HomeLabHD/nut" \
+      org.opencontainers.image.source="https://git.optcp.com/HomeLabHD/nut" \
       org.opencontainers.image.version="${VERSION}" \
       org.opencontainers.image.revision="${COMMIT}" \
       org.opencontainers.image.licenses="GPL-2.0-or-later"
