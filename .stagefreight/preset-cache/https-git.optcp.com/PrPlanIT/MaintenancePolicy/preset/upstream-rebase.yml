@@ -1,0 +1,6 @@
+upstream:
+  version:
+    ancestry: true
+  sync:
+    strategy: rebase
+    on_conflict: notify

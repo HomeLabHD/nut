@@ -1,0 +1,4 @@
+sync:
+  branches: { scope: exact, force: true }
+  tags: exact
+  releases: { scope: all, drafts: true }
