@@ -83,8 +83,13 @@ repos:
       - mirror
       - publish-origin
     sync:
-      git: true
-      releases: true
+      branches:
+        force: true
+        scope: exact
+      releases:
+        drafts: true
+        scope: all
+      tags: exact
   primary:
     branches:
       default: main
@@ -93,6 +98,11 @@ repos:
     roles:
       - primary
     worktree: .
+schedules:
+  upstream-refresh:
+    build: changes
+    cron: H H * * *
+    reason: Daily watch of networkupstools/nut; rebase onto its new release.
 stencils:
   presets:
     - https://git.optcp.com/PrPlanIT/MaintenancePolicy//preset/stencils-base.yml
@@ -103,3 +113,17 @@ toolchains:
   want:
     presets:
       - https://git.optcp.com/PrPlanIT/MaintenancePolicy//preset/toolchains-scanners.yml
+upstream:
+  sources:
+    nut:
+      git: https://github.com/networkupstools/nut
+      select:
+        tags: ^v(?P<version>\d+\.\d+\.\d+)$
+  sync:
+    from: nut
+    on_conflict: notify
+    strategy: rebase
+  version:
+    ancestry: true
+    since: v2.8.5
+    track: nut
