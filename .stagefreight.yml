@@ -109,9 +109,5 @@ upstream:
   sources:
     nut:
       git: https://github.com/networkupstools/nut
-      tags: ^v(?P<version>\d+\.\d+\.\d+)$
-  sync:
-    from: nut
   version:
-    since: v2.8.5
     track: nut
